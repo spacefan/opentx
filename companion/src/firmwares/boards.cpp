@@ -73,8 +73,9 @@ uint32_t Boards::getFourCC(Type board)
     case BOARD_TARANIS_X9DP_2019:
       return 0x3378746F;
     case BOARD_TARANIS_X9LITE:
-    case BOARD_TARANIS_X9LITES:
       return 0x3C78746F;
+    case BOARD_TARANIS_X9LITES:
+      return 0x3E78746F;
     case BOARD_SKY9X:
     case BOARD_AR9X:
     case BOARD_9XRPRO:
