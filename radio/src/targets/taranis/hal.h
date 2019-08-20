@@ -934,7 +934,7 @@
 #if !defined(RADIO_T12)
   #define HARDWARE_INTERNAL_MODULE
 #endif
-#if defined(PCBX9LITE) || (defined(PCBX9DP) && PCBREV >= 2019)
+#if defined(PCBXLITES) || defined(PCBX9LITE) || (defined(PCBX9DP) && PCBREV >= 2019)
   #define INTERNAL_MODULE_PXX2
 #else
   #define INTERNAL_MODULE_PXX1
@@ -1813,7 +1813,7 @@
   #define BT_TX_GPIO_PinSource         GPIO_PinSource14
   #define BT_RX_GPIO_PinSource         GPIO_PinSource9
   #define BT_USART_IRQHandler          USART6_IRQHandler
-#elif defined(PCBX7) || defined(PCBXLITE) || (defined(PCBX9DP) && PCBREV >= 2019) || defined(PCBX9LITES)
+#elif defined(PCBX7) || defined(PCBXLITE) || defined(PCBX9LITES) || (defined(PCBX9DP) && PCBREV >= 2019)
   #define STORAGE_BLUETOOTH
   #define BT_RCC_APB1Periph             RCC_APB1Periph_USART3
   #define BT_RCC_APB2Periph             0
