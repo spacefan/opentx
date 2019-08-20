@@ -479,7 +479,17 @@ void menuMainView(event_t event)
       doMainScreenGraphics();
 
       // Switches
-#if defined(PCBX9LITE)
+#if defined(PCBX9LITES)
+      static const uint8_t x[NUM_SWITCHES] = {2*FW-2, 2*FW-2, 16*FW+1, 2*FW-2, 16*FW+1, 16*FW+1, 2*FW-2, };
+      static const uint8_t y[NUM_SWITCHES] = {4*FH+1, 5*FH+1, 4*FH+1, 6*FH+1, 5*FH+1, 6*FH+1, 7*FH+1};
+      for (int i=0; i<NUM_SWITCHES; ++i) {
+        if (SWITCH_EXISTS(i)) {
+          getvalue_t val = getValue(MIXSRC_FIRST_SWITCH + i);
+          getvalue_t sw = ((val < 0) ? 3 * i + 1 : ((val == 0) ? 3 * i + 2 : 3 * i + 3));
+          drawSwitch(x[i], y[i], sw, 0);
+        }
+      }
+#elif defined(PCBX9LITE)
       static const uint8_t x[NUM_SWITCHES] = {2*FW-2, 2*FW-2, 16*FW+1, 2*FW-2, 16*FW+1};
       static const uint8_t y[NUM_SWITCHES] = {4*FH+1, 5*FH+1, 5*FH+1, 6*FH+1, 6*FH+1};
       for (int i=0; i<NUM_SWITCHES; ++i) {

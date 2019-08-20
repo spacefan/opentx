@@ -66,6 +66,13 @@ elif options[optcount] == "x9lite":
     maxsize = 65536 * 8
     board = BOARD_TARANIS
     board_family = BOARD_FAMILY_ARM
+elif options[optcount] == "x9lites":
+    command_options["PCB"] = "X9LITES"
+    command_options["MULTI_SPORT"] = "ON"
+    firmware_options = options_taranis_x9lites
+    maxsize = 65536 * 8
+    board = BOARD_TARANIS
+    board_family = BOARD_FAMILY_ARM
 elif options[optcount] == "x7":
     command_options["PCB"] = "X7"
     command_options["MULTI_SPORT"] = "ON"

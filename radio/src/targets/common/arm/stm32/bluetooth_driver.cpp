@@ -23,7 +23,7 @@
 Fifo<uint8_t, BT_TX_FIFO_SIZE> btTxFifo;
 Fifo<uint8_t, BT_RX_FIFO_SIZE> btRxFifo;
 
-#if defined(PCBX7) || defined(PCBXLITE)
+#if defined(PCBX7) || defined(PCBXLITE) || defined(PCBX9LITES)
 volatile uint8_t btChipPresent = 0;
 #endif
 

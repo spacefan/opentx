@@ -73,6 +73,7 @@ uint32_t Boards::getFourCC(Type board)
     case BOARD_TARANIS_X9DP_2019:
       return 0x3378746F;
     case BOARD_TARANIS_X9LITE:
+    case BOARD_TARANIS_X9LITES:
       return 0x3C78746F;
     case BOARD_SKY9X:
     case BOARD_AR9X:
@@ -112,6 +113,7 @@ const int Boards::getEEpromSize(Board::Type board)
     case BOARD_TARANIS_XLITE:
     case BOARD_TARANIS_X7:
     case BOARD_TARANIS_X9LITE:
+    case BOARD_TARANIS_X9LITES:
     case BOARD_TARANIS_X9D:
     case BOARD_TARANIS_X9DP:
     case BOARD_TARANIS_X9DP_2019:
@@ -147,6 +149,7 @@ const int Boards::getFlashSize(Type board)
     case BOARD_TARANIS_XLITE:
     case BOARD_TARANIS_X7:
     case BOARD_TARANIS_X9LITE:
+    case BOARD_TARANIS_X9LITES:
     case BOARD_TARANIS_X9D:
     case BOARD_TARANIS_X9DP:
     case BOARD_TARANIS_X9DP_2019:
@@ -514,6 +517,8 @@ const QString Boards::getBoardName(Board::Type board)
       return "Taranis X9E";
     case BOARD_TARANIS_X9LITE:
       return "Taranis X9-Lite";
+    case BOARD_TARANIS_X9LITES:
+      return "Taranis X9-Lites";
     case BOARD_SKY9X:
       return "Sky9x";
     case BOARD_9XRPRO:
