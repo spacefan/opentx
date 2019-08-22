@@ -296,6 +296,36 @@ void onMainViewMenu(const char *result)
   }
 }
 
+void displaySwitch(coord_t x, coord_t y, int width, unsigned int index)
+{
+  if (SWITCH_EXISTS(index)) {
+    int val = getValue(MIXSRC_FIRST_SWITCH+index);
+
+    if (val >= 0) {
+      lcdDrawSolidHorizontalLine(x, y, width);
+      lcdDrawSolidHorizontalLine(x, y+2, width);
+      y += 4;
+      if (val > 0) {
+        lcdDrawSolidHorizontalLine(x, y, width);
+        lcdDrawSolidHorizontalLine(x, y+2, width);
+        y += 4;
+      }
+    }
+
+    lcdDrawChar(width==5 ? x+1 : x, y, 'A'+index, SMLSIZE);
+    y += 7;
+
+    if (val <= 0) {
+      lcdDrawSolidHorizontalLine(x, y, width);
+      lcdDrawSolidHorizontalLine(x, y+2, width);
+      if (val < 0) {
+        lcdDrawSolidHorizontalLine(x, y+4, width);
+        lcdDrawSolidHorizontalLine(x, y+6, width);
+      }
+    }
+  }
+}
+
 void menuMainView(event_t event)
 {
   uint8_t view = g_eeGeneral.view;
@@ -480,15 +510,17 @@ void menuMainView(event_t event)
 
       // Switches
 #if defined(PCBX9LITES)
-      static const uint8_t x[NUM_SWITCHES] = {2*FW-2, 2*FW-2, 16*FW+1, 2*FW-2, 16*FW+1, 16*FW+1, 2*FW-2, };
-      static const uint8_t y[NUM_SWITCHES] = {4*FH+1, 5*FH+1, 4*FH+1, 6*FH+1, 5*FH+1, 6*FH+1, 7*FH+1};
-      for (int i=0; i<NUM_SWITCHES; ++i) {
+      static const uint8_t x[NUM_SWITCHES-2] = {2*FW-2, 2*FW-2, 16*FW+1, 2*FW-2, 16*FW+1};
+      static const uint8_t y[NUM_SWITCHES-2] = {4*FH+1, 5*FH+1, 5*FH+1, 6*FH+1, 6*FH+1};
+      for (int i=0; i<(NUM_SWITCHES-2); ++i) {
         if (SWITCH_EXISTS(i)) {
           getvalue_t val = getValue(MIXSRC_FIRST_SWITCH + i);
           getvalue_t sw = ((val < 0) ? 3 * i + 1 : ((val == 0) ? 3 * i + 2 : 3 * i + 3));
           drawSwitch(x[i], y[i], sw, 0);
         }
       }
+      displaySwitch(29, 5*FH+1, 4, SW_SF);
+      displaySwitch(116, 5*FH+1, 4, SW_SG);
 #elif defined(PCBX9LITE)
       static const uint8_t x[NUM_SWITCHES] = {2*FW-2, 2*FW-2, 16*FW+1, 2*FW-2, 16*FW+1};
       static const uint8_t y[NUM_SWITCHES] = {4*FH+1, 5*FH+1, 5*FH+1, 6*FH+1, 6*FH+1};
